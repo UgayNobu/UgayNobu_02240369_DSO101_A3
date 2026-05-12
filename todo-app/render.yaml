@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: be-todo-github
+    runtime: docker
+    branch: main
+    dockerfilePath: ./todo-app/backend/Dockerfile
+    dockerContext: ./todo-app/backend
+    region: singapore
+    plan: free
+    envVars:
+      - key: DB_HOST
+        value: dpg-d6rbkpogjchc73f8r4g0-a
+      - key: DB_USER
+        value: todo_db_tx5b_user
+      - key: DB_PASSWORD
+        value: CuoopvLPgWQALVAZAHqSmDxwGGiInhBi
+      - key: DB_NAME
+        value: todo_db_tx5b
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_SSL
+        value: "true"
+      - key: PORT
+        value: "5000"
+  - type: web
+    name: fe-todo-github
+    runtime: docker
+    branch: main
+    dockerfilePath: ./todo-app/frontend/Dockerfile
+    dockerContext: ./todo-app/frontend
+    region: singapore
+    plan: free
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://be-todo-github.onrender.com
