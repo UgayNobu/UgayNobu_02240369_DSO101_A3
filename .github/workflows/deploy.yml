@@ -33,6 +33,8 @@ jobs:
           context: ./todo-app/frontend
           push: true
           tags: ugaynobu/fe-todo:latest
+          build-args: |
+            NEXT_PUBLIC_API_URL=https://be-todo-a3.onrender.com
 
       - name: Trigger Render Deployment
         run: |
